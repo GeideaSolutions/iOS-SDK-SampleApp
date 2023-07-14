@@ -54,3 +54,18 @@ GeideaPaymentAPI.pay(theAmount amount: GeideaPaymentSDK.GDAmount,
                     })
    ```
 
+Adding framework to your project
+
+```In the project navigator, select your project.
+   Select your target.
+   Select the "Build Phases" tab.
+   expander. Click the + button.
+   Select your framework. (GeideaPaymentSDK framework)
+   (optional) Drag and drop the added framework to the "Frameworks" group.```
+
+Image references:
+
+https://github.com/payorch/ios_sample_app/assets/25414755/e66cff03-d0d1-4949-ae26-9080e19a5c6c
+https://github.com/payorch/ios_sample_app/assets/25414755/d83c34f4-9ecb-4b5f-9472-04835dee0e45
+https://github.com/payorch/ios_sample_app/assets/25414755/0e6c759d-c349-48b2-bb73-e800069a3d5d
+

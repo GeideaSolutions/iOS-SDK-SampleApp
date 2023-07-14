@@ -125,9 +125,9 @@ extension ConfiguartionViewController {
     }
     
     @objc func saveConfigButtonClicked() {
-//        if !GeideaPaymentAPI.isCredentialsAvailable() {
+        if !GeideaPaymentAPI.isCredentialsAvailable() {
             GeideaPaymentAPI.setCredentials(withMerchantKey: viewModel.key ?? "", andPassword: viewModel.password ?? "")
-//        }
+        }
         viewModel.showReceipt = firstCheckBox.selected
         viewModel.showEmail = secondCheckBox.selected
         viewModel.showAddress = thirdCheckBox.selected
@@ -174,8 +174,6 @@ extension ConfiguartionViewController {
     }
     
     func changeToProdCredentials() {
-        merchantKey.text = "a087f4ca-9890-407b-9c2f-7630836cc020"
-        passwordKey.text = "a6899557-4cb3-41ab-9df3-a6540b23ab60"
         viewModel.updateCredentials(key: merchantKey.text, password: passwordKey.text)
     }
 }
