@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import GeideaPaymentSDK
 
 class ConfiguartionViewController: UIViewController {
     
@@ -23,20 +23,19 @@ class ConfiguartionViewController: UIViewController {
         UIScrollView()
     }()
     
-    lazy var segment: UISegmentedControl = {
-        var segmentList: [String] = ["Prod","Test"]
-        let segment = UISegmentedControl(items: segmentList)
-        segment.backgroundColor = .clear
-        if #available(iOS 13.0, *) {
-            segment.selectedSegmentTintColor = .systemBlue
-        } else {
-            // Fallback on earlier versions
-        }
-        segment.selectedSegmentIndex = 1
-        segment.setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        segment.addTarget(self, action: #selector(segmentAction(_:)), for: .valueChanged)
-        return segment
+    lazy var environmentTextField: UITextField = {
+        let textField = UITextField()
+        textField.delegate = self
+        textField.attributedPlaceholder = NSAttributedString(
+            string: "Select Environment",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
+        )
+        textField.borderStyle = .roundedRect
+        textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
+        textField.withImage(direction: .Right, image: UIImage(named: "gdArrow")!, colorSeparator: UIColor.clear, colorBorder: UIColor.clear)
+        return textField
     }()
+    
     
     lazy var credentialsView: UIView = {
         let view = UIView()
@@ -52,8 +51,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Merchant Key",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -65,8 +63,8 @@ class ConfiguartionViewController: UIViewController {
             string: "API Password",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.isSecureTextEntry = true
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -137,8 +135,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Add ISO Alpha-3 Code",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -159,8 +156,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Call back URL",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -172,8 +168,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Return URL",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -203,8 +198,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Merchant Reference ID",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black, .paragraphStyle: paragraphStyle]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -216,8 +210,7 @@ class ConfiguartionViewController: UIViewController {
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
         textField.backgroundColor = .lightGray
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -238,8 +231,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Customer Email",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -260,8 +252,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Street Name and Number",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -273,8 +264,7 @@ class ConfiguartionViewController: UIViewController {
             string: "City",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -286,8 +276,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Post Code",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -299,8 +288,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Country",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -325,8 +313,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Street Name and Number",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -338,8 +325,7 @@ class ConfiguartionViewController: UIViewController {
             string: "City",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -351,8 +337,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Post Code",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -364,8 +349,7 @@ class ConfiguartionViewController: UIViewController {
             string: "Country",
             attributes: [NSAttributedString.Key.foregroundColor: UIColor.black]
         )
-        textField.layer.borderColor = UIColor.gray.cgColor
-        textField.layer.borderWidth = 1
+        textField.borderStyle = .roundedRect
         textField.font =  UIFont.systemFont(ofSize: 14, weight: .regular)
         return textField
     }()
@@ -387,6 +371,8 @@ class ConfiguartionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .white
         self.title = "Configuration"
+        createPickerView()
+        dismissPickerView()
         setupUI()
         scrollView.keyboardDismissMode = .onDrag
         inputs = [merchantKey, passwordKey, currencyTextField, callBackUrlTextField, returnUrlTextField, merchantReferenceTextField, customerEmailTextField, billingStreetNameTextField, billingCityNameTextField, billingPostCodeTextField, billingCountryTextField, shippingStreetNameTextField, shippingCityNameTextField, shippingPostCodeTextField, shippingCountryTextField]
@@ -406,4 +392,91 @@ class ConfiguartionViewController: UIViewController {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidShowNotification, object: nil)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardDidHideNotification, object: nil)
     }
+    
+    var selectedEnvironment: Environment?
+    let environmentList = Environment.allCases
+}
+
+extension ConfiguartionViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    func updateEnvironment() {
+        if let env = selectedEnvironment {
+            environmentTextField.text = env.name
+            GeideaPaymentAPI.setEnvironment(environment: env)
+        }
+    }
+    
+    func createPickerView() {
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        environmentTextField.inputView = pickerView
+        updateEnvironment()
+    }
+    
+    func dismissPickerView() {
+        let toolBar = UIToolbar()
+        toolBar.sizeToFit()
+        let button = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(self.action))
+        toolBar.setItems([button], animated: true)
+        toolBar.isUserInteractionEnabled = true
+        environmentTextField.inputAccessoryView = toolBar
+    }
+    @objc func action() {
+        view.endEditing(true)
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1 // number of session
+    }
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return environmentList.count // number of dropdown items
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return environmentList[row].name // dropdown item
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        selectedEnvironment = environmentList[row] // selected item
+        updateEnvironment()
+    }
+}
+
+extension UITextField {
+    
+    enum Direction {
+        case Left
+        case Right
+    }
+    
+    // add image to textfield
+    func withImage(direction: Direction, image: UIImage, colorSeparator: UIColor, colorBorder: UIColor){
+        let mainView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
+        mainView.layer.cornerRadius = 5
+        
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 30))
+        view.backgroundColor = .clear
+        view.clipsToBounds = true
+        view.layer.cornerRadius = 5
+        view.layer.borderWidth = CGFloat(0.5)
+        view.layer.borderColor = colorBorder.cgColor
+        mainView.addSubview(view)
+        
+        let imageView = UIImageView(image: image)
+        imageView.contentMode = .center
+        imageView.frame = CGRect(x: 18, y: 3.0, width: 24.0, height: 24.0)
+        view.addSubview(imageView)
+        
+        
+        if(Direction.Left == direction){ // image left
+            self.leftViewMode = .always
+            self.leftView = mainView
+        } else { // image right
+            self.rightViewMode = .always
+            self.rightView = mainView
+        }
+        
+        self.layer.borderColor = colorBorder.cgColor
+        self.layer.borderWidth = CGFloat(0.5)
+        self.layer.cornerRadius = 5
+    }
+    
 }

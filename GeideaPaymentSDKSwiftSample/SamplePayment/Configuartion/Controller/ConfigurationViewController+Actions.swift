@@ -125,9 +125,9 @@ extension ConfiguartionViewController {
     }
     
     @objc func saveConfigButtonClicked() {
-        if !GeideaPaymentAPI.isCredentialsAvailable() {
+//        if !GeideaPaymentAPI.isCredentialsAvailable() {
             GeideaPaymentAPI.setCredentials(withMerchantKey: viewModel.key ?? "", andPassword: viewModel.password ?? "")
-        }
+//        }
         viewModel.showReceipt = firstCheckBox.selected
         viewModel.showEmail = secondCheckBox.selected
         viewModel.showAddress = thirdCheckBox.selected
@@ -145,6 +145,34 @@ extension ConfiguartionViewController {
         let customerDetails = GDCustomerDetails(withEmail: customerEmailTextField.text, andCallbackUrl: callBackUrlTextField.text, merchantReferenceId: merchantReferenceTextField.text, shippingAddress: shippingAddress, billingAddress: billingAddress, paymentOperation: .NONE)
         viewModel.customerDetails = customerDetails
         navigationController?.popViewController(animated: true)
+        
+     let config = Configuration(
+            merchantKey: merchantKey.text,
+            merchantPassword: passwordKey.text,
+            currency: currencyTextField.text,
+            merchantID: merchantReferenceTextField.text,
+            initiatedBy: initiatedTextField.text,
+            callBackUrl: callBackUrlTextField.text,
+            customerEmail: customerEmailTextField.text,
+            showAddress: thirdCheckBox.selected,
+            showEmail: secondCheckBox.selected,
+            showReceipt: firstCheckBox.selected,
+            shippingCountry: shippingCountryTextField.text,
+            shippingCityName: shippingCityNameTextField.text,
+            shippingStreetName: shippingStreetNameTextField.text,
+            shippingPostCode: shippingPostCodeTextField.text,
+            billingCountry: billingCountryTextField.text,
+            billingCityName: billingCityNameTextField.text,
+            billingStreetName: billingStreetNameTextField.text,
+            billingPostCode: billingPostCodeTextField.text,
+            environment: environmentTextField.text
+        )
+        config.saveToUserDefaults()
+        let alert = UIAlertController(title: "", message: "Configuration Saved Successfully.", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true)
     }
     
     @objc func saveButtonClicked() {
@@ -156,24 +184,55 @@ extension ConfiguartionViewController {
         passwordKey.text = ""
     }
     
-    @objc func segmentAction(_ sender: Any) {
-        switch segment.selectedSegmentIndex {
-        case 0:
-            GeideaPaymentAPI.setEnvironment(environment: Environment.prod)
-            changeToProdCredentials()
-            break
-        case 1:
-            GeideaPaymentAPI.setEnvironment(environment: Environment.test)
-            setUPcredentials()
-            viewModel.updateCredentials(key: merchantKey.text, password: passwordKey.text)
-            break
-        default:
-            break
-        }
-        viewModel.refreshConfig()
-    }
-    
     func changeToProdCredentials() {
+        merchantKey.text = ""
+        passwordKey.text = ""
         viewModel.updateCredentials(key: merchantKey.text, password: passwordKey.text)
     }
+}
+
+struct Configuration: Codable {
+    let merchantKey: String?
+    let merchantPassword: String?
+    let currency: String?
+    let merchantID: String?
+    let initiatedBy: String?
+    let callBackUrl: String?
+    let customerEmail: String?
+    let showAddress: Bool?
+    let showEmail: Bool?
+    let showReceipt: Bool?
+    let shippingCountry: String?
+    let shippingCityName: String?
+    let shippingStreetName: String?
+    let shippingPostCode: String?
+    let billingCountry: String?
+    let billingCityName: String?
+    let billingStreetName: String?
+    let billingPostCode: String?
+    let environment: String?
+    // Function to save Configuration to UserDefaults
+       func saveToUserDefaults() {
+           do {
+               let encodedData = try JSONEncoder().encode(self)
+               UserDefaults.standard.set(encodedData, forKey: "configuration")
+               UserDefaults.standard.synchronize();
+           } catch {
+               print("Error saving configuration: \(error)")
+           }
+       }
+       
+       // Function to retrieve Configuration from UserDefaults
+       static func loadFromUserDefaults() -> Configuration? {
+           guard let encodedData = UserDefaults.standard.data(forKey: "configuration") else {
+               return nil
+           }
+           do {
+               let configuration = try JSONDecoder().decode(Configuration.self, from: encodedData)
+               return configuration
+           } catch {
+               print("Error decoding configuration: \(error)")
+               return nil
+           }
+       }
 }

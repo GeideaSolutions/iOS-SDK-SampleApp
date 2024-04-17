@@ -15,7 +15,7 @@ extension ConfiguartionViewController {
         configLabel.anchors(top: guide.topAnchor,
                             topConstants: 24,
                             centerX: view.centerXAnchor)
-        setupSegment()
+        setupEnvironementText()
         setupScrollView()
         setupCredentialsView()
         setupLanguageView()
@@ -31,9 +31,9 @@ extension ConfiguartionViewController {
         setUpSaveConfigButton()
     }
     
-    func setupSegment() {
-        view.addSubview(segment)
-        segment.anchors(top: configLabel.bottomAnchor,
+    func setupEnvironementText() {
+        view.addSubview(environmentTextField)
+        environmentTextField.anchors(top: configLabel.bottomAnchor,
                         topConstants: 16,
                         leading: view.leadingAnchor,
                         leadingConstants: 16,
@@ -46,7 +46,7 @@ extension ConfiguartionViewController {
         let guide = view.safeAreaLayoutGuide
         view.addSubview(scrollView)
         scrollView.showsVerticalScrollIndicator = false
-        scrollView.anchors(top: segment.bottomAnchor,
+        scrollView.anchors(top: environmentTextField.bottomAnchor,
                            leading: guide.leadingAnchor,
                            bottom: guide.bottomAnchor,
                            trailing: guide.trailingAnchor)

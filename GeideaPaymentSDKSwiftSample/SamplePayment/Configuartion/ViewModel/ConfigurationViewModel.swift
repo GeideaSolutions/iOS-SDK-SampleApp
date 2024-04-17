@@ -45,7 +45,7 @@ class ConfigurationViewModel: ConfigurationPresentable {
         }
         self.key = key
         self.password = password
-        GeideaPaymentAPI.updateCredentials(withMerchantKey: publicKey, andPassword: password)
+        GeideaPaymentAPI.setCredentials(withMerchantKey: publicKey, andPassword: password)
         refreshConfig()
     }
     

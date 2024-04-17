@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yan-1W-es6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Yan-1W-es6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YSv-Qf-iD5">
-                                <rect key="frame" x="0.0" y="153" width="414" height="619"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="636"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4RG-gj-3eG" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="2526"/>
@@ -942,32 +942,47 @@
                                     <constraint firstItem="g7e-kd-fxR" firstAttribute="top" secondItem="cMH-cT-jZV" secondAttribute="top" id="ueT-Lq-LmE"/>
                                 </constraints>
                             </stackView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-bs-CEC">
-                                <rect key="frame" x="20" y="112" width="374" height="32"/>
-                                <segments>
-                                    <segment title="DEV"/>
-                                    <segment title="TEST"/>
-                                    <segment title="PPD"/>
-                                    <segment title="PROD"/>
-                                </segments>
-                                <connections>
-                                    <action selector="envSelectionTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="4oL-bG-JmL"/>
-                                </connections>
-                            </segmentedControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdC-dN-HoS">
+                                <rect key="frame" x="8" y="92" width="398" height="32"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="E0h-bs-CEC">
+                                        <rect key="frame" x="8" y="0.0" width="593" height="32"/>
+                                        <segments>
+                                            <segment title="EGY-PROD"/>
+                                            <segment title="UAE-PROD"/>
+                                            <segment title="KSA-PROD"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="envSelectionTapped:" destination="BYZ-38-t0r" eventType="valueChanged" id="4oL-bG-JmL"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="E0h-bs-CEC" firstAttribute="trailing" secondItem="65f-Q8-pV9" secondAttribute="trailing" constant="601" id="2Ft-EK-lSY"/>
+                                    <constraint firstItem="E0h-bs-CEC" firstAttribute="width" secondItem="4EF-W0-sIH" secondAttribute="width" priority="250" id="Mew-UG-NAL"/>
+                                    <constraint firstItem="E0h-bs-CEC" firstAttribute="bottom" secondItem="65f-Q8-pV9" secondAttribute="bottom" constant="31" id="U29-f5-3AE"/>
+                                    <constraint firstItem="E0h-bs-CEC" firstAttribute="top" secondItem="65f-Q8-pV9" secondAttribute="top" id="fxB-Q5-3WS"/>
+                                    <constraint firstItem="E0h-bs-CEC" firstAttribute="leading" secondItem="65f-Q8-pV9" secondAttribute="leading" constant="8" id="iwx-N2-Ra6"/>
+                                    <constraint firstAttribute="height" constant="32" id="lx0-0x-TAj"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="65f-Q8-pV9"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="4EF-W0-sIH"/>
+                            </scrollView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cMH-cT-jZV" firstAttribute="top" secondItem="YSv-Qf-iD5" secondAttribute="bottom" constant="20" id="1gc-kO-jFN"/>
-                            <constraint firstItem="YSv-Qf-iD5" firstAttribute="top" secondItem="E0h-bs-CEC" secondAttribute="bottom" constant="10" id="HC9-za-0LL"/>
+                            <constraint firstItem="YSv-Qf-iD5" firstAttribute="top" secondItem="AdC-dN-HoS" secondAttribute="bottom" constant="12" id="2em-5y-jNg"/>
+                            <constraint firstAttribute="trailing" secondItem="AdC-dN-HoS" secondAttribute="trailing" priority="750" constant="8" id="Fhc-ja-Whg"/>
                             <constraint firstItem="cMH-cT-jZV" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="IIf-ap-0Ak"/>
+                            <constraint firstItem="AdC-dN-HoS" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" constant="-16" id="Jtp-Cp-tuZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cMH-cT-jZV" secondAttribute="bottom" constant="20" id="Qg2-6r-vbT"/>
-                            <constraint firstItem="E0h-bs-CEC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iBm-BE-J1s"/>
-                            <constraint firstItem="E0h-bs-CEC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="lWe-Ac-q96"/>
+                            <constraint firstItem="AdC-dN-HoS" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ZS4-V5-nlx"/>
                             <constraint firstItem="YSv-Qf-iD5" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ot6-1D-Kjq"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cMH-cT-jZV" secondAttribute="trailing" constant="20" id="qcY-ED-cHL"/>
                             <constraint firstAttribute="trailing" secondItem="YSv-Qf-iD5" secondAttribute="trailing" id="sEW-Zi-kDz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="E0h-bs-CEC" secondAttribute="trailing" constant="20" id="xbd-Zs-CUJ"/>
+                            <constraint firstItem="AdC-dN-HoS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="8" id="vwl-tD-tlh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="GiP-9l-kHb"/>
@@ -1035,7 +1050,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806" y="56"/>
+            <point key="canvasLocation" x="805.79710144927537" y="55.580357142857139"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="EqK-QP-2XX">
@@ -1062,7 +1077,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
