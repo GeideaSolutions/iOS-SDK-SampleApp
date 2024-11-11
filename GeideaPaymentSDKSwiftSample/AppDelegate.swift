@@ -24,6 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+    func application(
+        _ application: UIApplication,
+        shouldAllowExtensionPointIdentifier extensionPointIdentifier: UIApplication.ExtensionPointIdentifier
+    ) -> Bool {
+        // Disable custom keyboards
+        return extensionPointIdentifier != .keyboard
+    }
+    
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         
         guard  let components = NSURLComponents(url: url, resolvingAgainstBaseURL: true),  let host = components.host,let _ = components.queryItems else {

@@ -34,7 +34,7 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		/aFYmYbcKdvY6tGAlmyDXFCLDsY=
+		GwPF6DKKGt5Uiiu9U+5oMvIjAcM=
 		</data>
 		<key>BNPL.storyboardc/BNPLViewController.nib</key>
 		<data>
@@ -90,7 +90,7 @@
 		</data>
 		<key>EInvoiceDetailsViewController.nib</key>
 		<data>
-		ykm+01qDq3v8+aVpHEO2Q+xNyqg=
+		Enbc3cWMy/zlMNWz7Mg90k3QgvE=
 		</data>
 		<key>EInvoiceItemTableViewCell.nib</key>
 		<data>
@@ -98,7 +98,7 @@
 		</data>
 		<key>EInvoiceItemViewController.nib</key>
 		<data>
-		o0U9Fy4DlJkAyinknSi6Q6vQUn8=
+		QW800Aa9jsupktOpdt3Ussn1rcc=
 		</data>
 		<key>GroupedBNPLView.nib/objects-13.0+.nib</key>
 		<data>
@@ -110,15 +110,19 @@
 		</data>
 		<key>Headers/GeideaPaymentSDK-Swift.h</key>
 		<data>
-		zxkJwnqVk8Yis3q3VvaZw3TWqTY=
+		FLoG2QHlL+jCT3YFpXcuaepUqxM=
 		</data>
 		<key>Headers/GeideaPaymentSDK.h</key>
 		<data>
 		B6Um43BupIX6n0Xm+lf9nynK8wk=
 		</data>
+		<key>HppWebViewController.nib</key>
+		<data>
+		/bZ2FgDpX2kBrAu0sJiMG8xt3MM=
+		</data>
 		<key>Info.plist</key>
 		<data>
-		WUBta5pVWwi7EH33KPB+MEgtKW4=
+		tEzkP1kECZ3q9Qlyzo+VjYdmSg8=
 		</data>
 		<key>InstallmentViewController.nib</key>
 		<data>
@@ -134,43 +138,43 @@
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		V7qOtnAreHWzWnbzyaxsce4witM=
+		0hdSF4jFHWs8nsCsglwa5movqno=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		HU/z3wh/zfMRlyYiC7HuegIe5R4=
+		Vt2b0qZJphwQnkKAsMKUwU98q5o=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		1DY7UfivFRZwKRqfconqOlpLQSA=
+		teH1hdUMsI5VopmC2AijhlJBjfU=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		HU/z3wh/zfMRlyYiC7HuegIe5R4=
+		Vt2b0qZJphwQnkKAsMKUwU98q5o=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		nuhVoUwrxFamxJajLAhrSqCy+gY=
+		TMQaq73gPrC7KBIV83z1IwJ9ZWo=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		V7qOtnAreHWzWnbzyaxsce4witM=
+		0hdSF4jFHWs8nsCsglwa5movqno=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		xEOSMikXEqI88RP+uMH5KemncLY=
+		ySdMm3W74C9BsTx38fNF+K61/Vk=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		o04T8dDA+x83CC3iqNW2Mih8k6g=
+		0x86mAgRquk2ajtoSAQf/22Zzyg=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		xEOSMikXEqI88RP+uMH5KemncLY=
+		ySdMm3W74C9BsTx38fNF+K61/Vk=
 		</data>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		eP2uEcJHhKUAOIH8tLiJJtxjhI8=
+		+M+5yoqfdgPNBNAjRQ397tVDOgI=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -294,7 +298,7 @@
 		</data>
 		<key>PhoneNumberViewController.nib</key>
 		<data>
-		I8tAyEblIcdVvqI4wjafN6ZAw0c=
+		aU4L4xfhiGFXBYBWtC8NnkWsV3Y=
 		</data>
 		<key>ProgressView.nib</key>
 		<data>
@@ -362,7 +366,7 @@
 		</data>
 		<key>ShahryPurchaseViewController.nib</key>
 		<data>
-		HEr61M5YDO3axFLQU6clD8JSi+w=
+		lNj58nY2Ui8efVPpYzKVPDkX8Io=
 		</data>
 		<key>StepView.nib</key>
 		<data>
@@ -450,7 +454,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			FpPaI9s5vF1w0OqxGhs/zMYpC2tL8+b5PpIriOQd8tk=
+			5r4I2XMfDG/z5VF12TYM8Yo7gW80kZIfvHxXO6isrhw=
 			</data>
 		</dict>
 		<key>BNPL.storyboardc/BNPLViewController.nib</key>
@@ -548,7 +552,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			HVLTWdFtaUYhUI2RCX47+7YHYkm7TYndzYtnwdS4cD8=
+			42oYTa08YBW7UW4CGfOeU9rDYG7onJQWvC8LJ5S8Ezo=
 			</data>
 		</dict>
 		<key>EInvoiceItemTableViewCell.nib</key>
@@ -562,7 +566,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			08L7g2IcfPRd516Q7UusMJuPRHrMX25fNJ03p+FpkMA=
+			46Oiolva/kl6zbVzRE9kOtOQxaip60KuJrG1Xe1+IrE=
 			</data>
 		</dict>
 		<key>GroupedBNPLView.nib/objects-13.0+.nib</key>
@@ -583,7 +587,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VUJtZSGoyXDRGrwtfTUppH+W1NGUcU9Tym928vLF0JY=
+			SgjTZxZUWxCDZTwi+qEiglcq3OevyGebcdnc3e4PX18=
 			</data>
 		</dict>
 		<key>Headers/GeideaPaymentSDK.h</key>
@@ -591,6 +595,13 @@
 			<key>hash2</key>
 			<data>
 			y4hBfWj8p23DerqosHDLmQAQH+9EJDDBNBD+xpA5dXw=
+			</data>
+		</dict>
+		<key>HppWebViewController.nib</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			5h7qG+xzmn57KOoDA3LaBJEHFbwzcrqOJW14dU7mkrE=
 			</data>
 		</dict>
 		<key>InstallmentViewController.nib</key>
@@ -618,70 +629,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qb/gfVbcv6k/vFXboB7ZxoiDy8zDhECdMFykpuWmXIo=
+			fR6qv57rpKKwkCOCppvX9ed7ijfrppSh5aLGpkUg45g=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			30MQYkrFLO8OXJbSqnDAlL4HVYD2gndZXvt50Db2aBc=
+			MKy+60wmqwP5v+7CurzvhANYaG/4cG5dehPu+Kiq9jA=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qtN4CFVuuylAhMPr2dy+2dNzs1qzkrEfM7xrTblH5uE=
+			QXCPtmOs8xu3OUY+BQO+8tmixvr8/IBrbKoyc3KRwPI=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			30MQYkrFLO8OXJbSqnDAlL4HVYD2gndZXvt50Db2aBc=
+			MKy+60wmqwP5v+7CurzvhANYaG/4cG5dehPu+Kiq9jA=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			0UgbN0FOevT5MpggXjC1IJ3CvbtGuR6z3oVyuzB5+LU=
+			PUCfH17qaNUyEcocEn1tg+jZ0LM+1zAraag05rr3Gg8=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			qb/gfVbcv6k/vFXboB7ZxoiDy8zDhECdMFykpuWmXIo=
+			fR6qv57rpKKwkCOCppvX9ed7ijfrppSh5aLGpkUg45g=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pNoRFgj25PVrrXqwilxurcjqHDT689XWqYbeJ45e9RI=
+			C/P8kqgYFxvCXQAxfrBMylJzlvi4x0kXs4ibaXtKbtc=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			WtxIihGRpQtPdkI0HfdQvtYi12PApKz48yaYo+D/CrM=
+			u2HUrF1lCuX0l4F11XcYME962MqBx5l+3upV6M4xrR4=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			pNoRFgj25PVrrXqwilxurcjqHDT689XWqYbeJ45e9RI=
+			C/P8kqgYFxvCXQAxfrBMylJzlvi4x0kXs4ibaXtKbtc=
 			</data>
 		</dict>
 		<key>Modules/GeideaPaymentSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			poeqszF285JPMtR1hUtwqjzLepEQ8fZ5Dxh4Xm/qET4=
+			4hE1asTuACxrpoKz44hntJKzr0sn52G1GdwiyoiFkvk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -898,7 +909,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			qGggx0JP0xYlzEmavVSICWAaAtAXiLFB+33Y2CciDnI=
+			gV7psTbch5Sx5tRrDAuivIrZKXZeqIIItffli/UNbAM=
 			</data>
 		</dict>
 		<key>ProgressView.nib</key>
@@ -1017,7 +1028,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			VaYjs/0BrPkLiLmiWTKIxqArqo2v2vmoApMKEhAWxmQ=
+			JHxyM9R3S+WoZhSntqvQstxU+8L6brfzzLyzrKVkIrg=
 			</data>
 		</dict>
 		<key>StepView.nib</key>

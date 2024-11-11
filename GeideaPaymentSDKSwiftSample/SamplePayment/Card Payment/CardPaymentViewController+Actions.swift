@@ -37,20 +37,18 @@ extension CardPaymentViewController {
     }
     
     func changeHeightOfCardDetails() {
-        if firstRadioButton.selected {
-            cardDetailsView.isHidden = true
-            heightConstraint?.constant = 0
-        }
-        
         if secondRadioButton.selected {
             cardDetailsView.isHidden = false
             heightConstraint?.constant = 166
+        } else {
+            cardDetailsView.isHidden = true
+            heightConstraint?.constant = 0
         }
     }
     
     @objc func payButtonClicked() {
         viewModel.saveAmount(amount: amountTextField.text)
-        if firstRadioButton.selected {
+        if firstRadioButton.selected || thirdRadioButton.selected {
             payWithSDk()
         }
         
@@ -89,44 +87,74 @@ extension CardPaymentViewController {
         let tokenizationDetails = GDTokenizationDetails(withCardOnFile: false, initiatedBy: viewModel.initiatedBy, agreementId: "", agreementType: "")
         let qrDetails = GDQRDetails(phoneNumber: nil)
         guard let amount = viewModel.amount else { return }
-        GeideaPaymentAPI.payWithGeideaForm(theAmount: amount, showAddress: viewModel.showAddress ?? false, showEmail: viewModel.showEmail ?? false, showReceipt: viewModel.showReceipt ?? false, tokenizationDetails: tokenizationDetails, customerDetails: viewModel.customerDetails, applePayDetails: applePayDetails, config: viewModel.merchantConfig, paymentIntentId: "", qrDetails: qrDetails, cardPaymentMethods: nil, paymentSelectionMethods: nil, viewController: self, completion:{ response, error in
-            DispatchQueue.main.async {
+        if(thirdRadioButton.selected) {
+            GeideaPaymentAPI.payWithGeideaHpp(theAmount: amount, showAddress: viewModel.showAddress ?? false, showEmail: viewModel.showEmail ?? false, showReceipt: viewModel.showReceipt ?? false, tokenizationDetails: tokenizationDetails, customerDetails: viewModel.customerDetails, applePayDetails: applePayDetails, config: viewModel.merchantConfig, paymentIntentId: "", qrDetails: qrDetails, cardPaymentMethods: nil, paymentSelectionMethods: nil, viewController: self, completion:{ response, error in
                 
-                if let err = error {
-                    if err.errors.isEmpty {
-                        var message = ""
-                        if err.responseCode.isEmpty {
-                            message = "\n responseMessage: \(err.responseMessage)"
+                DispatchQueue.main.async {
+                    
+                    if let err = error {
+                        if err.errors.isEmpty {
+                            var message = ""
+                            if err.responseCode.isEmpty {
+                                message = "\n responseMessage: \(err.responseMessage)"
+                                
+                            } else if !err.orderId.isEmpty {
+                                message = "\n responseCode: \(err.responseCode)  \n responseMessage: \(err.responseMessage) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage) \n orderId: \(err.orderId)"
+                            } else {
+                                message = "\n responseCode: \(err.responseCode)  \n responseMessage: \(err.responseMessage) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage)"
+                            }
+                            self.displayAlert(title: err.title,  message: message , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails)
                             
-                        } else if !err.orderId.isEmpty {
-                            message = "\n responseCode: \(err.responseCode)  \n responseMessage: \(err.responseMessage) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage) \n orderId: \(err.orderId)"
                         } else {
-                            message = "\n responseCode: \(err.responseCode)  \n responseMessage: \(err.responseMessage) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage)"
+                            self.displayAlert(title: err.title,  message:  "responseCode:  \(err.status) \n responseMessage: \(err.errors) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage)" , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails)
                         }
-                        self.displayAlert(title: err.title,  message: message , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails)
-                        
-                    } else {
-                        self.displayAlert(title: err.title,  message:  "responseCode:  \(err.status) \n responseMessage: \(err.errors) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage)" , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails)
-                    }
-                } else {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        guard let orderResponse = response else {
-                            return
-                        }
-                        self.orderId = orderResponse.orderId
-                        
-                        if let orderString = GeideaPaymentAPI.getModelString(order: orderResponse) {
-                            let vc = SuccessViewController()
-                            vc.delegate = self
-                            vc.json = orderString
-                            vc.isRefundVisible = true
-                            self.present(vc, animated: true, completion: nil)
-                        }
-            
+                    } else if let res = response {
+                        self.orderId = res.orderId
+                        self.displayAlert(title: res.responseMessage,  message:  "orderId:  \(res.orderId) \n sessionId: \(res.sessionId)" , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails,
+                            showOk: true)
                     }
                 }
-            }
-        })
+            });
+        } else if(firstRadioButton.selected) {
+            GeideaPaymentAPI.payWithGeideaForm(theAmount: amount, showAddress: viewModel.showAddress ?? false, showEmail: viewModel.showEmail ?? false, showReceipt: viewModel.showReceipt ?? false, tokenizationDetails: tokenizationDetails, customerDetails: viewModel.customerDetails, applePayDetails: applePayDetails, config: viewModel.merchantConfig, paymentIntentId: "", qrDetails: qrDetails, cardPaymentMethods: nil, paymentSelectionMethods: nil, viewController: self, completion:{ response, error in
+                DispatchQueue.main.async {
+                    
+                    if let err = error {
+                        if err.errors.isEmpty {
+                            var message = ""
+                            if err.responseCode.isEmpty {
+                                message = "\n responseMessage: \(err.responseMessage)"
+                                
+                            } else if !err.orderId.isEmpty {
+                                message = "\n responseCode: \(err.responseCode)  \n responseMessage: \(err.responseMessage) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage) \n orderId: \(err.orderId)"
+                            } else {
+                                message = "\n responseCode: \(err.responseCode)  \n responseMessage: \(err.responseMessage) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage)"
+                            }
+                            self.displayAlert(title: err.title,  message: message , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails)
+                            
+                        } else {
+                            self.displayAlert(title: err.title,  message:  "responseCode:  \(err.status) \n responseMessage: \(err.errors) \n detailedResponseCode: \(err.detailedResponseCode)  \n detailedResponseMessage: \(err.detailedResponseMessage)" , amount: amount, cardDetails: nil, paymentIntentId: "", tokenizationDetails: tokenizationDetails, customerDetails: self.viewModel.customerDetails)
+                        }
+                    } else {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                            guard let orderResponse = response else {
+                                return
+                            }
+                            self.orderId = orderResponse.orderId
+                            
+                            if let orderString = GeideaPaymentAPI.getModelString(order: orderResponse) {
+                                let vc = SuccessViewController()
+                                vc.delegate = self
+                                vc.json = orderString
+                                vc.isRefundVisible = true
+                                self.present(vc, animated: true, completion: nil)
+                            }
+                            
+                        }
+                    }
+                }
+            })
+        }
     }
     
     func displayAlert(title: String, message: String) {
@@ -139,25 +167,27 @@ extension CardPaymentViewController {
         }
     }
     
-    func displayAlert(title: String, message: String, amount: GDAmount, cardDetails: GDCardDetails?, paymentIntentId: String?, tokenizationDetails: GDTokenizationDetails?, customerDetails: GDCustomerDetails? ) {
+    func displayAlert(title: String, message: String, amount: GDAmount, cardDetails: GDCardDetails?, paymentIntentId: String?, tokenizationDetails: GDTokenizationDetails?, customerDetails: GDCustomerDetails?, showOk: Bool = false) {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-            
-            alert.addAction(UIAlertAction(title: "RETRY", style: .default, handler: {_ in
-                DispatchQueue.main.async { [weak self] in
-                    self?.payWithSDk()
-                }
-            }))
-            
-            alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
-            
+            if(showOk) {
+                alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+            } else {
+                alert.addAction(UIAlertAction(title: "RETRY", style: .default, handler: {_ in
+                    DispatchQueue.main.async { [weak self] in
+                        self?.payWithSDk()
+                    }
+                }))
+                
+                alert.addAction(UIAlertAction(title: "CANCEL", style: .cancel, handler: nil))
+            }
             self.present(alert, animated: true)
         }
     }
     
     func pay(amount: GDAmount, cardDetails: GDCardDetails, tokenizationDetails: GDTokenizationDetails?, paymentIntentId
-                : String?, customerDetails: GDCustomerDetails?) {
+             : String?, customerDetails: GDCustomerDetails?) {
         
         GeideaPaymentAPI.pay(theAmount: amount, withCardDetails: cardDetails, config: viewModel.merchantConfig, showReceipt: viewModel.showReceipt ?? false, andTokenizationDetails: tokenizationDetails, andPaymentIntentId: paymentIntentId,andCustomerDetails: customerDetails, paymentMethods: nil, navController: self, completion:{ response, error in
             DispatchQueue.main.async {

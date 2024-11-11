@@ -46,9 +46,11 @@ extension CardPaymentViewController {
         
         var tapOneGesture = UITapGestureRecognizer()
         var tapTwoGesture = UITapGestureRecognizer()
+        var tapThreeGesture = UITapGestureRecognizer()
         
         var firstLabelTitle : UIButton!
         var seconTitleLabel : UIButton!
+        var thirdTitleLabel : UIButton!
         
         view.addSubview(firstRadioButton)
         firstRadioButton.selected = true
@@ -107,11 +109,41 @@ extension CardPaymentViewController {
         sdkArray.append(seconTitleLabel)
         seconTitleLabel.addTarget(self, action: #selector(labelTapped(sender:)), for: .touchUpInside)
         seconTitleLabel.adjustsImageWhenHighlighted = false
+        
+        tapThreeGesture = UITapGestureRecognizer.init(target: self, action: #selector(buttonOneTapped(sender:)))
+        
+        view.addSubview(thirdRadioButton)
+        thirdRadioButton.selected = false
+        
+        thirdRadioButton.anchors(top: secondRadioButton.bottomAnchor,
+                                  topConstants: 16,
+                                  leading: view.safeAreaLayoutGuide.leadingAnchor,
+                                  leadingConstants: 24,
+                                  heightConstants: 12,
+                                  widthConstants: 12)
+        thirdRadioButton.isUserInteractionEnabled = true
+        thirdRadioButton.layoutIfNeeded()
+        radioButtonArray.append(thirdRadioButton)
+        thirdRadioButton.addGestureRecognizer(tapThreeGesture)
+        
+        thirdTitleLabel = UIButton()
+        view.addSubview(thirdTitleLabel)
+        thirdTitleLabel.backgroundColor = .white
+        thirdTitleLabel.setTitleColor(.black, for: .normal)
+        thirdTitleLabel.setTitle("HPP Checkout",for: .normal)
+        thirdTitleLabel.titleLabel?.font =  UIFont.monospacedDigitSystemFont(ofSize: 14, weight: .regular)
+        thirdTitleLabel.anchors(leading: thirdRadioButton.trailingAnchor,
+                                leadingConstants: 16,
+                                centerY: thirdRadioButton.centerYAnchor)
+        thirdTitleLabel.layoutIfNeeded()
+        sdkArray.append(thirdTitleLabel)
+        thirdTitleLabel.addTarget(self, action: #selector(labelTapped(sender:)), for: .touchUpInside)
+        thirdTitleLabel.adjustsImageWhenHighlighted = false
     }
     
     func setupCardDetailsUI() {
         view.addSubview(cardDetailsView)
-        cardDetailsView.anchors(top: secondRadioButton.bottomAnchor,
+        cardDetailsView.anchors(top: thirdRadioButton.bottomAnchor,
                                 topConstants: 24,
                                 leading: view.safeAreaLayoutGuide.leadingAnchor,
                                 trailing: view.safeAreaLayoutGuide.trailingAnchor)

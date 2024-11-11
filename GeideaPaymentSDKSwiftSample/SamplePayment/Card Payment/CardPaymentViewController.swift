@@ -61,6 +61,7 @@ class CardPaymentViewController: UIViewController {
     var sdkArray = [UIButton]()
     var firstRadioButton = RadioButton.init()
     var secondRadioButton = RadioButton.init()
+    var thirdRadioButton = RadioButton.init()
     var heightConstraint: NSLayoutConstraint?
     lazy var cardDetailsView: UIView = {
         let view = UIView()

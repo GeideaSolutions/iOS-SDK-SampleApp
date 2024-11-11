@@ -39,6 +39,9 @@ class ConfigurationViewModel: ConfigurationPresentable {
     var showEmail: Bool? = false
     var showReceipt: Bool? = false
     var selectedCurrency: String?
+    init() {
+        self.loadMerchantConfig()
+    }
     func updateCredentials(key: String?, password: String?) {
         guard let publicKey = key, let password = password, !publicKey.isEmpty, !password.isEmpty else {
             return
@@ -78,4 +81,32 @@ class ConfigurationViewModel: ConfigurationPresentable {
         return true
     }
     
+    func loadMerchantConfig() {
+        guard let config = Configuration.loadFromUserDefaults() else {
+            return;
+        }
+        let shippingAddress = GDAddress(withCountryCode: config.shippingCountry, andCity: config.shippingCityName, andStreet: config.shippingStreetName, andPostCode: config.shippingPostCode)
+        let billingAddress = GDAddress(withCountryCode: config.billingCountry, andCity: config.billingCityName, andStreet: config.billingStreetName, andPostCode: config.billingPostCode)
+        let customerDetails = GDCustomerDetails(withEmail: config.customerEmail, andCallbackUrl: config.callBackUrl, merchantReferenceId: config.merchantID, shippingAddress: shippingAddress, billingAddress: billingAddress, paymentOperation: .NONE)
+        self.customerDetails = customerDetails
+        self.callBackUrl =  "https://api-test.gd-azure-dev.net/external-services/api/v1/callback/test123"
+        let list  = Environment.allCases.filter { env in
+            env.name == config.environment
+        }
+        
+        let env = list.first ?? Environment.uae_production
+        GeideaPaymentAPI.setEnvironment(environment: env)
+        let savedLanguageIndex = UserDefaults.standard.integer(forKey: "language")
+        
+        switch savedLanguageIndex {
+        case 1:
+            GeideaPaymentAPI.setlanguage(language: Language.arabic)
+        default:
+            GeideaPaymentAPI.setlanguage(language: Language.english)
+        }
+        self.selectedCurrency = config.currency
+        self.initiatedBy = config.initiatedBy
+        self.updateCredentials(key: config.merchantKey, password: config.merchantPassword)
+        refreshConfig()
+    }
 }
